@@ -9,11 +9,28 @@
 <f:loadBundle basename="resources.application" var="msg"/>
 
 <head>
-    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
+    <title>Welcome</title>
 </head>
 
-<body>
-<h3><h:outputText value="#{msg.welcomeHeading}" /></h3>
-<p><h:outputText value="#{msg.welcomeMessage}" /></p>
-</body>
+<h:body>
+   <h:form prependId="false">
+      <h3>Por favor ingresa tu nombre y password.</h3>
+      <Table>
+         <tr>
+            <td>Nombre:</td>
+            <td><h:inputText value="#{user.name}" id="name" /></td>
+         </tr>
+         <tr>
+            <td>Password:</td>
+            <td><h:inputText value="#{user.password}" id="password" /></td>
+         </tr>
+      </Table>
+      <p>
+         <h:commandButton value="Login">
+            <f:ajax execute="name password" render="out"></f:ajax>
+         </h:commandButton>
+      </p>
+      <h3><h:outputText id="out" value="#{user.greeting}" /></h3>
+   </h:form>
+</h:body>
 </html>
