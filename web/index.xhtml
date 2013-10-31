@@ -2,35 +2,30 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-<f:loadBundle basename="resources.application" var="msg"/>
+<f:loadBundle basename="resources.application" var="msg" />
 
 <head>
-    <title>Welcome</title>
+<title>Welcome</title>
 </head>
 
 <h:body>
-   <h:form prependId="false">
-      <h3>Por favor ingresa tu nombre y password.</h3>
-      <Table>
-         <tr>
-            <td>Nombre:</td>
-            <td><h:inputText value="#{user.name}" id="name" /></td>
-         </tr>
-         <tr>
-            <td>Password:</td>
-            <td><h:inputText value="#{user.password}" id="password" /></td>
-         </tr>
-      </Table>
-      <p>
-         <h:commandButton value="Login">
-            <f:ajax execute="name password" render="out"></f:ajax>
-         </h:commandButton>
-      </p>
-      <h3><h:outputText id="out" value="#{user.greeting}" /></h3>
-   </h:form>
+   
+      
+<h3>INDEX DE EJERCICIOS</h3>
+	<table>
+	  <tr>
+	     <td><h:outputLabel value="LOGIN AJAX SENCILLO" /></td>
+	     <td><h:link value="EJEMPLO 1" outcome="loginAjax"  /></td>
+	  </tr>
+	  <tr>
+	     <td><h:outputLabel value="QUIZ PROBLEM
+	     " /></td>
+	     <td><h:link value="EJEMPLO 2" outcome="quizProblem"  /></td>
+	  </tr>
+	</table>
 </h:body>
 </html>
