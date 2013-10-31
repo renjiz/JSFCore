@@ -3,7 +3,10 @@ package com.jsfcore;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 // or import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 
@@ -11,8 +14,10 @@ import javax.enterprise.context.SessionScoped;
 
 @Named
 // or @ManagedBean
-@SessionScoped
+@ConversationScoped
 public class QuizBean implements Serializable {
+	@Inject Conversation conversation;
+
 	private ArrayList<ProblemBean> problems = new ArrayList<ProblemBean>();
 	private int currentIndex;
 	private int score;
@@ -47,11 +52,18 @@ public class QuizBean implements Serializable {
 
 	public void setAnswer(String newValue) {
 		try {
+			if (currentIndex == 0) {
+				conversation.begin();
+			}
+
 			int answer = Integer.parseInt(newValue.trim());
-			if (getCurrent().getSolution() == answer){
+			if (getCurrent().getSolution() == answer) {
 				score++;
-				}
+			}
 			currentIndex = (currentIndex + 1) % problems.size();
+			if (currentIndex == 0) {
+				conversation.end();
+			}
 		} catch (NumberFormatException ex) {
 		}
 	}
